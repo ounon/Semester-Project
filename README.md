@@ -2,17 +2,17 @@
 
 ## Code Editor
 
-# Context
+### Context
 Exercises of introductory level programming often require a simple control mechanism,
 such as giving predefined parameters and observing the program's output. In exercise
 sessions, we often provide students with answers so that they can verify their results.
 However, we are not able to check their replies one by one. Thus, in 2019-2020, we
 used the JupyterHub system and tested students' output with expected outputs to
-automate this approach. However, this system did not work well, because i) we had to
-write all test cases from scratch by instructor ii) cells of a Jupyter notebook process
-Java codes differently.
+automate this approach. However, this system did not work well, because 
+i) we had towrite all test cases from scratch by instructor 
+ii) cells of a Jupyter notebook process Java codes differently.
 
-# Description
+### Description
 Many online programming courses/challenge websites implement simple input/output
 testing (e.g., Hackerrank), running the user's code with predefined inputs and
 comparing the results to expected outputs. In this project, we propose developing an
