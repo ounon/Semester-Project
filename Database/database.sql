@@ -1,0 +1,56 @@
+CREATE DATABASE Compiler;
+
+CREATE TABLE  Student (
+    id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(30) NOT NULL,
+	last_name VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE  Assistant (
+    id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(30) NOT NULL,
+	last_name VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE  Professor (
+    id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(30) NOT NULL,
+	last_name VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Course (
+	id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	title VARCHAR(40) NOT NULL,
+	description VARCHAR(100),
+	professor_id SMALLINT,
+	PRIMARY KEY (id),
+	FOREIGN KEY (Professor_id) REFERENCES Professor(id)
+);
+
+CREATE TABLE StudentCourse (
+	id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY (id),
+	FOREIGN KEY (student_id) REFERENCES Student(id),
+	FOREIGN KEY (course_id) REFERENCES Course(id)
+);
+
+CREATE TABLE AssistantCourse (
+	id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY (id),
+	FOREIGN KEY (assistant_id) REFERENCES Assistant(id),
+	FOREIGN KEY (course_id) REFERENCES Course(id)
+);
+
+CREATE TABLE Exercice (
+	id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	title VARCHAR(40) NOT NULL,
+	description VARCHAR(100),
+	course_id SMALLINT,
+	PRIMARY KEY (id),
+	FOREIGN KEY (course_id) REFERENCES Course(id)
+);
+
+
