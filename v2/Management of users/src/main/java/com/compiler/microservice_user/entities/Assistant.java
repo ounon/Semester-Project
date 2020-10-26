@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.compiler.microservice_user.enities;
+package com.compiler.microservice_user.entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,6 +35,7 @@ public class Assistant implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "ASSISTANT_ID")
     private Short assistantId;
@@ -58,6 +61,13 @@ public class Assistant implements Serializable {
 
     public Assistant(Short assistantId, String firstName, String lastName, String email, String password) {
         this.assistantId = assistantId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Assistant(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -126,7 +136,7 @@ public class Assistant implements Serializable {
 
     @Override
     public String toString() {
-        return "com.compiler.microservice_user.enities.Assistant[ assistantId=" + assistantId + " ]";
+        return assistantId + " - " + firstName + " " + lastName;
     }
     
 }

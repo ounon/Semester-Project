@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.compiler.microservice_user.enities;
+package com.compiler.microservice_user.entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,22 +22,23 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author User
  */
 @Entity
-@Table(name = "STUDENT")
+@Table(name = "PROFESSOR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s"),
-    @NamedQuery(name = "Student.findByStudentId", query = "SELECT s FROM Student s WHERE s.studentId = :studentId"),
-    @NamedQuery(name = "Student.findByFirstName", query = "SELECT s FROM Student s WHERE s.firstName = :firstName"),
-    @NamedQuery(name = "Student.findByLastName", query = "SELECT s FROM Student s WHERE s.lastName = :lastName"),
-    @NamedQuery(name = "Student.findByEmail", query = "SELECT s FROM Student s WHERE s.email = :email"),
-    @NamedQuery(name = "Student.findByPassword", query = "SELECT s FROM Student s WHERE s.password = :password")})
-public class Student implements Serializable {
+    @NamedQuery(name = "Professor.findAll", query = "SELECT p FROM Professor p"),
+    @NamedQuery(name = "Professor.findByProfessorId", query = "SELECT p FROM Professor p WHERE p.professorId = :professorId"),
+    @NamedQuery(name = "Professor.findByFirstName", query = "SELECT p FROM Professor p WHERE p.firstName = :firstName"),
+    @NamedQuery(name = "Professor.findByLastName", query = "SELECT p FROM Professor p WHERE p.lastName = :lastName"),
+    @NamedQuery(name = "Professor.findByEmail", query = "SELECT p FROM Professor p WHERE p.email = :email"),
+    @NamedQuery(name = "Professor.findByPassword", query = "SELECT p FROM Professor p WHERE p.password = :password")})
+public class Professor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+       @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
-    @Column(name = "STUDENT_ID")
-    private Short studentId;
+    @Column(name = "PROFESSOR_ID")
+    private Short professorId;
     @Basic(optional = false)
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -49,27 +52,34 @@ public class Student implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-    public Student() {
+    public Professor() {
     }
 
-    public Student(Short studentId) {
-        this.studentId = studentId;
+    public Professor(Short professorId) {
+        this.professorId = professorId;
     }
 
-    public Student(Short studentId, String firstName, String lastName, String email, String password) {
-        this.studentId = studentId;
+    public Professor(Short professorId, String firstName, String lastName, String email, String password) {
+        this.professorId = professorId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
 
-    public Short getStudentId() {
-        return studentId;
+    public Professor(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 
-    public void setStudentId(Short studentId) {
-        this.studentId = studentId;
+    public Short getProfessorId() {
+        return professorId;
+    }
+
+    public void setProfessorId(Short professorId) {
+        this.professorId = professorId;
     }
 
     public String getFirstName() {
@@ -107,18 +117,18 @@ public class Student implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (studentId != null ? studentId.hashCode() : 0);
+        hash += (professorId != null ? professorId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Student)) {
+        if (!(object instanceof Professor)) {
             return false;
         }
-        Student other = (Student) object;
-        if ((this.studentId == null && other.studentId != null) || (this.studentId != null && !this.studentId.equals(other.studentId))) {
+        Professor other = (Professor) object;
+        if ((this.professorId == null && other.professorId != null) || (this.professorId != null && !this.professorId.equals(other.professorId))) {
             return false;
         }
         return true;
@@ -126,7 +136,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "com.compiler.microservice_user.enities.Student[ studentId=" + studentId + " ]";
+        return professorId + " - " + firstName + " " + lastName;
     }
     
 }
