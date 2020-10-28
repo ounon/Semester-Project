@@ -5,6 +5,7 @@
     <class>com.compiler.microservice_user.entities.Assistant</class>
     <class>com.compiler.microservice_user.entities.Professor</class>
     <class>com.compiler.microservice_user.entities.Student</class>
+    <class>com.compiler.microservice_user.entities.Course</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/compilerDB"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -6,16 +6,21 @@
 package com.compiler.microservice_user.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,6 +37,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Professor.findByEmail", query = "SELECT p FROM Professor p WHERE p.email = :email"),
     @NamedQuery(name = "Professor.findByPassword", query = "SELECT p FROM Professor p WHERE p.password = :password")})
 public class Professor implements Serializable {
+
+    @JoinTable(name = "PROFESSOR_COURSE", joinColumns = {
+        @JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "COURSE_ID", referencedColumnName = "COURSE_ID")})
+    @ManyToMany
+    private List<Course> courseList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -137,6 +148,15 @@ public class Professor implements Serializable {
     @Override
     public String toString() {
         return professorId + " - " + firstName + " " + lastName;
+    }
+
+    @XmlTransient
+    public List<Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(List<Course> courseList) {
+        this.courseList = courseList;
     }
     
 }

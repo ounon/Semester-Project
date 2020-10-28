@@ -29,12 +29,13 @@ public class MicroserviceUserApplication implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        studentRepository.save(new Student("Ibrahim","Ounon","ibrahim.ounon@unil.ch","123456"));
+        studentRepository.deleteAll();
+        /*studentRepository.save(new Student("Ibrahim","Ounon","ibrahim.ounon@unil.ch","123456"));
         studentRepository.findAll().forEach(s->{
             System.out.println(s.toString());
-        });
+        });*/
         
-        assistantRepository.save(new Assistant("Melike","Geçer","melike.geçer@unil.ch","123456"));
+        /*assistantRepository.save(new Assistant("Melike","Geçer","melike.geçer@unil.ch","123456"));
         assistantRepository.findAll().forEach(a->{
             System.out.println(a.toString());
         });
@@ -42,7 +43,7 @@ public class MicroserviceUserApplication implements CommandLineRunner{
         professorRepository.save(new Professor("Benoît","Garbinato","Benoit.Garbinato@unil.ch","123456"));
         professorRepository.findAll().forEach(p->{
             System.out.println(p.toString());
-        });
+        });*/
     }
 
 }
