@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.compiler</groupId>
-	<artifactId>microservice_question</artifactId>
+	<artifactId>microservice_user</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>microservice_question</name>
-	<description>Management of question</description>
+	<name>microservice_user</name>
+	<description>Management of users</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -23,11 +23,23 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+                <dependency>
+		    <groupId>org.apache.derby</groupId>
+		    <artifactId>derby</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
+                <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+                <!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -95,6 +107,11 @@
 	  <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
 	  <version>2.7.7</version>
 	  <scope>provided</scope>
+	 </dependency>
+	 <dependency>
+	  <groupId>org.springframework.security</groupId>
+	  <artifactId>spring-security-core</artifactId>
+	  <type>jar</type>
 	 </dependency>
 	</dependencies>
 
