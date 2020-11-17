@@ -6,7 +6,9 @@
 package com.compiler.microservice_user.services;
 
 
+import com.compiler.microservice_user.dao.CourseRepository;
 import com.compiler.microservice_user.dao.ProfessorRepository;
+import com.compiler.microservice_user.entities.Course;
 import com.compiler.microservice_user.entities.Professor;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 /**
  *
@@ -29,10 +32,31 @@ public class ProfessorService {
     @Autowired
     private ProfessorRepository professorRepository;
     
+    @Autowired
+    private CourseRepository courseRepository;
+    
     @PostMapping(value="/registerProfessor")
     public Professor register(@RequestBody Professor s){
         Professor tmpProfessor = new Professor(s.getFirstName(),s.getLastName(), s.getEmail(), new BCryptPasswordEncoder().encode(s.getPassword()));
         return professorRepository.save(tmpProfessor);
+    }
+    
+    @PostMapping("/professors/{professor_id}/courses/{course_id}")
+    public Professor addCourse(@PathVariable(value="professor_id") short professor_id, @PathVariable(value="course_id") short course_id){
+        Professor professor = professorRepository.getOne(professor_id);
+        Course course = courseRepository.getOne(course_id);
+        professor.getCourseList().add(course);
+        course.getProfessorList().add(professor);
+        course.setCourseId(course_id);
+        courseRepository.save(course);
+        professor.setProfessorId(professor_id);
+        return professorRepository.save(professor);
+    }
+    
+    @PutMapping("/professors/{professor_id}")
+    public Professor update(@PathVariable(value="professor_id") short student_id,@RequestBody Professor professor){
+        professor.setProfessorId(student_id);
+        return professorRepository.save(professor);
     }
     
     @GetMapping("/professors")

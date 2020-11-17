@@ -9,6 +9,7 @@ import com.compiler.microservice_question.dao.CourseRepository;
 import com.compiler.microservice_question.entities.Course;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +22,12 @@ import org.springframework.web.bind.annotation.RequestBody;
  *
  * @author User
  */
+@RestController
 public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
     
-    @PostMapping(value="/addCourse")
+    @PostMapping(value="/courses")
     public Course add(@RequestBody Course c){
         return courseRepository.save(new Course(c.getName(),c.getDescription()));
     }
@@ -50,8 +52,5 @@ public class CourseService {
       courseRepository.deleteAll();
     }
     
-    @PutMapping("/courses/{course_id}")
-    public void update(@PathVariable(value="course_id") short course_id) {
-      courseRepository.deleteAll();
-    }
+  
 }

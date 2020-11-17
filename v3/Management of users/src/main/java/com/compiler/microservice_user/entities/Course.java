@@ -74,6 +74,11 @@ public class Course implements Serializable {
         this.courseId = courseId;
         this.name = name;
     }
+    
+    public Course(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     public Short getCourseId() {
         return courseId;
@@ -125,6 +130,7 @@ public class Course implements Serializable {
     public void setStudentList(List<Student> studentList) {
         this.studentList = studentList;
     }
+    
 
     @Override
     public int hashCode() {

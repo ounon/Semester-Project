@@ -7,13 +7,13 @@ package com.compiler.microservice_user.dao;
 
 import com.compiler.microservice_user.entities.Professor;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
 
 /**
  *
  * @author User
  */
-@RepositoryRestResource
+
 public interface ProfessorRepository extends JpaRepository<Professor, Short>{
     
 }
