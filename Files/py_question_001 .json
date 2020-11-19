@@ -1,0 +1,11 @@
+{
+  "description": "Write a piece of code which asks the user to enter their name and takes the user's name and prints it. For instance, for the username 'John', it should print 'Hello, John' .",
+  "total_score": 5,
+  "question": "# Your code here",
+  "solution": "username = input(\"Type your username\") \n print(\"Hello, \" + username)",
+  "test_cases": {
+    "John": "Hello, John",
+    "Willow": "Hello, Willow"
+    },
+  "programming_language": "Python"
+}

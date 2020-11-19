@@ -14,17 +14,20 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author User
  */
+@RestController
 public class QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
     
-    @PostMapping(value="/addQuestion")
+    @PostMapping(value="/questions")
     public Question add(@RequestBody Question c){
         return questionRepository.save(new Question(c.getTitle(),c.getCategory()));
     }
@@ -48,6 +51,13 @@ public class QuestionService {
     public void deleteAll() {
       questionRepository.deleteAll();
     }
+    
+     @PutMapping("/questions/{question_id}")
+    public Question update(@PathVariable(value="question_id") short course_id,@RequestBody Question question){
+        question.setQuestionId(course_id);
+        return questionRepository.save(question);
+    }
+    
     
   
 }

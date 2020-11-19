@@ -1,0 +1,10 @@
+{
+  "description": "Write a method that prints the elements of a given list using a for loop.",
+  "total_score": 15,
+  "question": "public class HelloWorld{ \n public static void main(String []args){ \n int[] numbers = {12, 23, 34, 45, 56, 67, 78, 89, 90}; \n printElemenets(numbers); } \n // Write the method here \n }",
+  "solution": "public class HelloWorld{ \n public static void main(String []args){ \n int[] numbers = {12, 23, 34, 45, 56, 67, 78, 89, 90}; \n printElemenets(numbers); } \n // Write the method here \n public static void printElemenets(int[] numbers) { \n for(int i=0; i<numbers.length; i++) { \n System.out.println(i); \n } \n } \n }",
+  "test_cases": {
+    "": "12 \n 23 \n 34 \n 45 \n 56 \n 67 \n 78 \n 89 \n 90"
+    },
+  "programming_language": "Java"
+}

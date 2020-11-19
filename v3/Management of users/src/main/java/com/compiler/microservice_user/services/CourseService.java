@@ -83,7 +83,7 @@ public class CourseService {
         return courseRepository.save(course);
     }
     
-    @PutMapping("/course/{course_id}")
+    @PutMapping("/courses/{course_id}")
     public Course update(@PathVariable(value="course_id") short course_id,@RequestBody Course course){
         course.setCourseId(course_id);
         return courseRepository.save(course);
