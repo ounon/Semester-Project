@@ -5,6 +5,7 @@
  */
 package com.compiler.microservice_user.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -119,7 +120,7 @@ public class Assistant implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
+    @JsonIgnore
     public List<Course> getCourseList() {
         return courseList;
     }

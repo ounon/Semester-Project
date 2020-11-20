@@ -5,6 +5,7 @@
  */
 package com.compiler.microservice_question.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -75,6 +76,13 @@ public class Student implements Serializable {
         this.email = email;
         this.password = password;
     }
+    
+     public Student(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 
     public Short getStudentId() {
         return studentId;
@@ -116,7 +124,7 @@ public class Student implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
+    @JsonIgnore
     public List<Course> getCourseList() {
         return courseList;
     }
@@ -125,7 +133,7 @@ public class Student implements Serializable {
         this.courseList = courseList;
     }
 
-    @XmlTransient
+    @JsonIgnore
     public List<Submission> getSubmissionList() {
         return submissionList;
     }

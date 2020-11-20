@@ -63,6 +63,12 @@ public class StudentService {
       return studentRepository.findAll();
     }
     
+    @GetMapping("/students/{student_id}/courses")
+    public List<Course> getCourses(@PathVariable(value="student_id") short student_id) {
+        Student student = studentRepository.getOne(student_id);
+        return student.getCourseList();
+    }
+    
     @GetMapping("/students/{student_id}")
     public Optional<Student> get(@PathVariable(value="student_id") short student_id) {
       return studentRepository.findById(student_id);
@@ -77,4 +83,15 @@ public class StudentService {
     public void deleteAll() {
       studentRepository.deleteAll();
     }
+    
+    @DeleteMapping("/students/{student_id}/courses/{course_id}")
+    public void removeCourse(@PathVariable(value="student_id") short student_id, @PathVariable(value="course_id") short course_id) {
+        Student student = studentRepository.getOne(student_id);
+        Course course = courseRepository.getOne(course_id);
+        student.getCourseList().remove(course);
+        course.getStudentList().remove(student);
+        student.setStudentId(student_id);
+        studentRepository.save(student);
+    }
+    
 }

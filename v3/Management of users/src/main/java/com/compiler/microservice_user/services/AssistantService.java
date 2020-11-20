@@ -68,6 +68,12 @@ public class AssistantService {
       return assistantRepository.findById(assistant_id);
     }
     
+     @GetMapping("/assistants/{assistant_id}/courses")
+    public List<Course> getCourses(@PathVariable(value="professor_id") short student_id) {
+        Assistant assistant = assistantRepository.getOne(student_id);
+        return assistant.getCourseList();
+    }
+    
     @DeleteMapping("/assistants/{assistant_id}")
     public void delete(@PathVariable(value="assistant_id") short assistant_id) {
       assistantRepository.deleteById(assistant_id);

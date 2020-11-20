@@ -69,6 +69,12 @@ public class ProfessorService {
       return professorRepository.findById(professor_id);
     }
     
+    @GetMapping("/professors/{professor_id}/courses")
+    public List<Course> getCourses(@PathVariable(value="professor_id") short student_id) {
+        Professor professor = professorRepository.getOne(student_id);
+        return professor.getCourseList();
+    }
+    
     @DeleteMapping("/professors/{professor_id}")
     public void delete(@PathVariable(value="professor_id") short professor_id) {
       professorRepository.deleteById(professor_id);

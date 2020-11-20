@@ -5,6 +5,7 @@
  */
 package com.compiler.microservice_question.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -50,7 +51,7 @@ public class Question implements Serializable {
     private String questionFilePath;
     @Column(name = "question_type")
     private String questionType;
-    @Basic(optional = false)
+   
     @Column(name = "category")
     private String category;
     @ManyToMany(mappedBy = "questionList")
@@ -114,7 +115,7 @@ public class Question implements Serializable {
         this.category = category;
     }
 
-    @XmlTransient
+    @JsonIgnore
     public List<Course> getCourseList() {
         return courseList;
     }
@@ -123,7 +124,7 @@ public class Question implements Serializable {
         this.courseList = courseList;
     }
 
-    @XmlTransient
+    @JsonIgnore
     public List<Submission> getSubmissionList() {
         return submissionList;
     }

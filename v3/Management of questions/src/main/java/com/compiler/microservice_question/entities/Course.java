@@ -5,6 +5,7 @@
  */
 package com.compiler.microservice_question.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -99,7 +100,7 @@ public class Course implements Serializable {
         this.description = description;
     }
 
-    @XmlTransient
+    @JsonIgnore
     public List<Question> getQuestionList() {
         return questionList;
     }
@@ -108,7 +109,7 @@ public class Course implements Serializable {
         this.questionList = questionList;
     }
 
-    @XmlTransient
+    @JsonIgnore
     public List<Student> getStudentList() {
         return studentList;
     }
@@ -140,6 +141,5 @@ public class Course implements Serializable {
     @Override
     public String toString() {
         return "com.compiler.microservice_question.entities.Course[ courseId=" + courseId + " ]";
-    }
-    
+    }  
 }
