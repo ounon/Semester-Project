@@ -35,13 +35,13 @@ public class AssistantService {
      @Autowired
     private CourseRepository courseRepository;
     
-    @PostMapping(value="/registerAssistant")
+    @PostMapping(value="/assistants")
     public Assistant register(@RequestBody Assistant s){
         Assistant tmpAssistant = new Assistant(s.getFirstName(),s.getLastName(), s.getEmail(), new BCryptPasswordEncoder().encode(s.getPassword()));
         return assistantRepository.save(tmpAssistant);
     }
     
-     @PostMapping("/assistants/{assistant_id}/courses/{course_id}")
+    @PostMapping("/assistants/{assistant_id}/courses/{course_id}")
     public Assistant addCourse(@PathVariable(value="assistant_id") short assistant_id, @PathVariable(value="course_id") short course_id){
         Assistant assistant = assistantRepository.getOne(assistant_id);
         Course course = courseRepository.getOne(course_id);
@@ -68,9 +68,9 @@ public class AssistantService {
       return assistantRepository.findById(assistant_id);
     }
     
-     @GetMapping("/assistants/{assistant_id}/courses")
-    public List<Course> getCourses(@PathVariable(value="professor_id") short student_id) {
-        Assistant assistant = assistantRepository.getOne(student_id);
+    @GetMapping("/assistants/{assistant_id}/courses")
+    public List<Course> getCourses(@PathVariable(value="assistant_id") short assistant_id) {
+        Assistant assistant = assistantRepository.getOne(assistant_id);
         return assistant.getCourseList();
     }
     

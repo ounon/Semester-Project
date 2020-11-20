@@ -35,7 +35,7 @@ public class ProfessorService {
     @Autowired
     private CourseRepository courseRepository;
     
-    @PostMapping(value="/registerProfessor")
+    @PostMapping(value="/professors")
     public Professor register(@RequestBody Professor s){
         Professor tmpProfessor = new Professor(s.getFirstName(),s.getLastName(), s.getEmail(), new BCryptPasswordEncoder().encode(s.getPassword()));
         return professorRepository.save(tmpProfessor);
@@ -54,8 +54,8 @@ public class ProfessorService {
     }
     
     @PutMapping("/professors/{professor_id}")
-    public Professor update(@PathVariable(value="professor_id") short student_id,@RequestBody Professor professor){
-        professor.setProfessorId(student_id);
+    public Professor update(@PathVariable(value="professor_id") short professor_id,@RequestBody Professor professor){
+        professor.setProfessorId(professor_id);
         return professorRepository.save(professor);
     }
     
