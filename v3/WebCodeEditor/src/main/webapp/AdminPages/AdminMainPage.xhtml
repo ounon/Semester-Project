@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    </h:head>
+
+    <h:body>
+#{studentView.students}
+
+<h:form id="form">
+    <p:dataList value="#{studentView.students}" var="student" type="ordered">
+        <f:facet name="header">
+            Basic
+            sss
+        </f:facet>
+        #{student.studentId},#{student.firstName}, #{student.lastName}
+    </p:dataList>
+    
+   <!-- <p:dataList value="#{courseView.courses}" var="course" type="ordered">
+        <f:facet name="header">
+            Basic
+            sss
+        </f:facet>
+        #{course.courseId},#{course.name}, #{course.description}
+    </p:dataList>-->
+    
+    <p:outputPanel layout="block">
+  <h3>The Volkswagen CC (also known as the
+    Volkswagen Passat CC)</h3>
+  <p>is a four-door coupe version of the Volkswagen Passat.</p>
+</p:outputPanel>
+    
+    
+    <p:commandButton value="text1&#10;text2" style="white-space: pre;" />  
+    
+    <p:commandButton value="Disabled" id="disabled" style="margin-left:20px;" disabled="true" />  
+    
+    <p:panel id="horizontal" header="Horizontal Toggle" toggleable="true" toggleOrientation="horizontal">
+        <h:panelGrid columns="2" cellpadding="10">
+            <h:outputText
+                value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+                His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+                Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
+                but given to ruthless violence whenever anything stands against the good of the family." />
+        </h:panelGrid>
+    </p:panel>
+</h:form>
+    
+    <p:dataTable var="car" value="">
+    <p:column headerText="Id">
+        <h:outputText value="1" />
+    </p:column>
+ 
+    <p:column headerText="Year">
+        <h:outputText value="2" />
+    </p:column>
+ 
+    <p:column headerText="Brand">
+        <h:outputText value="3" />
+    </p:column>
+ 
+    <p:column headerText="Color">
+        <h:outputText value="4" />
+    </p:column>
+</p:dataTable>
+        </h:body>
+</html>

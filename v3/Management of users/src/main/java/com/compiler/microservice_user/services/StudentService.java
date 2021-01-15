@@ -94,4 +94,15 @@ public class StudentService {
         studentRepository.save(student);
     }
     
+    @GetMapping("/students/{email}/{password}")
+    public Student check(@PathVariable(value="email") String email, @PathVariable(value="password") String password)
+    {    
+        Student student = studentRepository.findByEmail(email);
+        if (student != null){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
+            encoder.matches(password, student.getPassword());
+        }
+        return student;
+    }
+    
 }

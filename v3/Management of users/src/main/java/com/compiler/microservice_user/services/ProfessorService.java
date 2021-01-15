@@ -84,4 +84,10 @@ public class ProfessorService {
     public void deleteAll() {
       professorRepository.deleteAll();
     }
+    
+    @GetMapping("/professors/{email}/{password}")
+    public Professor check(@PathVariable(value="email") String email, @PathVariable(value="password") String password)
+    {
+        return professorRepository.findIfExist(email,password);
+    }
 }

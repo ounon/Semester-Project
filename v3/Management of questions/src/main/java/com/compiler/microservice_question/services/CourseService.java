@@ -69,5 +69,11 @@ public class CourseService {
         course.setCourseId(course_id);
         return courseRepository.save(course);
     }
+    
+     @GetMapping("/courses/{course_id}/questions")
+    public List<Question> getQuestions(@PathVariable(value="course_id") short course_id){
+        Course course = courseRepository.getOne(course_id); 
+        return course.getQuestionList();
+    }
   
 }

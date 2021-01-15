@@ -83,4 +83,10 @@ public class AssistantService {
     public void deleteAll() {
       assistantRepository.deleteAll();
     }
+    
+     @GetMapping("/assistants/{email}/{password}")
+    public Assistant check(@PathVariable(value="email") String email, @PathVariable(value="password") String password)
+    {
+        return assistantRepository.findIfExist(email,password);
+    }
 }

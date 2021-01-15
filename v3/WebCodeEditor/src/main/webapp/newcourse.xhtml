@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        
+    </head>
+    <body>
+       
+        <h:form>
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputLabel for="username" value="Course Name" />
+                <p:inputText id="username" value="#{loginView.username}" required="true" label="username" />
+                <h:outputLabel for="professor" value="Professor" />
+                <p:inputText id="professor" value="#{loginView.username}" required="true" label="username" />
+                <br/>
+                <!--<p:commandButton value="Login" id="login_button" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                -->
+                <br/>
+                <br/>     
+                <p>Teaching Assistant(s)</p>
+                <h:outputLabel for="tassistant" value="Teaching Assistant" />
+                <p:inputText id="tassistant" value="#{loginView.username}" required="true" label="username" />
+                <p:commandButton value="add" id="assbutton" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                <br/>
+                <br/>     
+                <p>Student Assistant(s)</p>
+                <h:outputLabel for="tassistant" value="Srtudent Assistant" />
+                <p:inputText id="sassistant" value="#{loginView.username}" required="true" label="username" />
+                <p:commandButton value="add" id="ass_button" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                
+            </h:panelGrid>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <p:commandButton value="create" id="create" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+            <p:commandButton value="cancel" id="cancel" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+        </h:form>
+            <!-- <p:outputPanel  style="border:1px solid black">
+                <h:outputLabel value="Course Name" />
+                <p:inputText id="as"/>
+                <h:outputLabel value="Professor" />
+                <p:inputText id="ad"/>
+                <br/>
+            </p:outputPanel> 
+            
+            <p:outputPanel  style="width: 100px; height: 100px; 
+            border: solid 1px #ccc; display: inline-block;">
+                <p:outputLabel value="Course Name" />
+                <p:inputText id="as"/>
+                <p:outputLabel value="Professor" />
+                <p:inputText id="ad"/>
+                <br/>
+            </p:outputPanel>
+            <p:outputPanel  style="width: 100px; height: 100px; 
+            border: solid 1px #ccc; display: inline-block;">
+                <h:outputLabel value="Course Name" />
+                <p:inputText id="as1"/>
+                <h:outputLabel value="Professor" />
+                <p:inputText id="ad2"/>
+                <br/>
+            </p:outputPanel>
+            
+            <h:panelGroup layout="block" id="container" style="width: 100px; height: 100px; 
+            border: solid 1px #ccc; display: inline-block;">
+                <h:outputLabel value="Course Name" />
+                <p:inputText id="as1"/>
+                <h:outputLabel value="Professor" />
+                <p:inputText id="ad2"/>
+            </h:panelGroup>
+            
+            <h:panelGroup layout="block" id="contai" style="width: 100px; height: 100px; 
+            border: solid 1px #ccc; display: inline-block;">
+                <h:outputText value="I will be rendered inside a div" />
+            </h:panelGroup>-->
+            
+        <!--><div style="width: 100px; height: 100px; 
+            border: solid 1px #ccc; display: inline-block;">
+             
+              <h:outputLabel value="Course Name" />
+              <p:inputText size="7" id="as1"/>
+                <h:outputLabel value="Professor" />
+                <p:inputText id="ad2"/>
+        </div>
+
+        <div style="width: 100px; height: 100px; 
+            border: solid 1px #ccc; display: inline-block;">
+            
+             <h:outputLabel value="Course Name" />
+                <p:inputText id="as"/>
+                <h:outputLabel value="Professor" />
+                <p:inputText id="ad"/>
+        </div>
+        -->
+        
+        
+        
+    </body>
+</html>

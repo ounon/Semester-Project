@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <p:breadCrumb>
+                <p:menuitem value="Categories" url="#" />
+            </p:breadCrumb>
+
+
+
+        </h:form>
+
+
+        
+        <p:layout>
+
+
+
+
+            <p:layoutUnit position="west" size="200">
+                <h:form>
+                    <p:menu toggleable="true" model="#{studentExerciceBean.getQuestionsByCategory(param.courseId,param.studentId)}"/>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+
+               
+               
+                    <h:form>
+                        <!-- <c:if test="#{not empty param.questionId}">-->
+                    <p:commandButton value="Undo" id="undo_button" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                    <p:commandButton value="Redo" id="redo_button" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                  
+                    <p:commandButton value="Download" id="download_button" action="index.xhtml" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                  
+                    <p:commandButton value="Run" id="run_button" action="#{studentExerciceBean.runCode(studentExerciceBean.getExercice(param.questionId))}" rendered="#{not empty param.questionId}"  update="output"  style="margin-right:20px;" styleClass="ui-priority-primary" />
+                        
+         
+                    <p:commandButton value="save" id="save" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                    <p:commandButton value="Reset the question" id="rst_button" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                    <br/>
+                 
+                    <p:inputTextarea rows="30" cols="180" value="#{studentExerciceBean.getExercice(param.questionId)}" rendered="#{not empty param.questionId}"/>
+                    
+                    <br/>
+                    <h:outputText value="Output"  />
+                    <br/>
+                    <h:outputText id="output" value="#{studentExerciceBean.outputText}" style="border-style: solid; size: 500px" />
+                    <!--</c:if>-->
+                </h:form>
+                
+                
+            </p:layoutUnit>
+            
+            
+
+
+        </p:layout>
+
+    </h:body>
+</html>
