@@ -9,13 +9,16 @@ package com.compiler.webcodeeditor.beans;
 import com.compiler.webcodeeditor.models.Question;
 import com.compiler.webcodeeditor.models.QuestionFile;
 import com.compiler.webcodeeditor.models.ScriptBody;
+import java.io.Serializable;
 
  
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -32,12 +35,16 @@ import org.primefaces.model.menu.MenuModel;
  * @author ISO
  */
 @Named
-@RequestScoped
-public class StudentExerciceBean {
+@SessionScoped
+public class StudentExerciceBean implements Serializable {
  
     
     private String OutputText = "";
     //private MenuModel model;
+    
+    private String inputText;
+    
+    private int questionId;
 
     public String getOutputText() {
         return OutputText;
@@ -45,6 +52,31 @@ public class StudentExerciceBean {
 
     public void setOutputText(String OutputText) {
         this.OutputText = OutputText;
+    }
+
+    public String getInputText() {
+        return inputText;
+    }
+
+    public void setInputText(String inputText) {
+        this.inputText = inputText;
+    }
+
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
+    
+    
+    @PostConstruct
+    public void init(){
+        System.out.println("HEY");
+        System.out.println(questionId);
+        inputText = getExercice((short)questionId);
+        System.out.println("inputtext " + inputText);
     }
 
     public MenuModel getQuestionsByCategory(short courseId, short studentId) {
@@ -85,6 +117,8 @@ public class StudentExerciceBean {
    {
        QuestionFile qf = new QuestionFile();
        String url = "http://localhost:8082/questions/" + questionId;
+       System.out.println("HELLO");
+       System.out.println(url);
         Client restClient = ClientBuilder.newClient();
         Question question = restClient
             .target(url)
@@ -111,6 +145,7 @@ public class StudentExerciceBean {
            String clientId = "c0932fbc84b9dc0615e212371d9d9189";
        String clientSecret = "c5c4d751552d71830060306dcc76fab1cdb78b14489cfb80afe8e418e26bb19d";
        String script = code;
+       //String script = "public class HelloWorld{ \\n public static void main(String []args){ \\n int[] numbers = {12, 23, 34, 45, 56, 67, 78, 89, 90}; \\n printElemenets(numbers); } \\n // Write the method here \\n }";
        String language = "java";
        int versionIndex = 0;
        ScriptBody body = new ScriptBody(clientId, clientSecret, script, language, versionIndex);

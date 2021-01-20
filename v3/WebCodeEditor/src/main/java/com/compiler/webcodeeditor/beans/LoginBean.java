@@ -57,13 +57,6 @@ public class LoginBean {
     }
 
     public String login() {
-        boolean loggedIn = false;
-
-        /*if (username != null && username.equals("admin") && password != null && password.equals("admin")) {
-            loggedIn = true;
-        } else {
-            loggedIn = false;
-        }*/
         String url = "http://localhost:8081/students/" + username + "/" + password;
         Client restClient = ClientBuilder.newClient();
         Student student = restClient
