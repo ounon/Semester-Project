@@ -14,7 +14,7 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <f:metadata>
-            <f:viewParam name="id" value="#{loginBean.id}" />
+            <f:viewParam name="id" value="#{loginStudentBean.id}" />
         </f:metadata>
         <p:dataList value="#{courseBean.getStudentCourse(param.id)}" var="course" type="ordered">
         <f:facet name="header">

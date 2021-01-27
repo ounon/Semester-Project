@@ -57,6 +57,34 @@ public class CourseBean implements Serializable {
        
     }
     
+     public List<Course> getProfessorCourse(short professorId) {
+ 
+        String url = "http://localhost:8081/professors/" + professorId + "/courses";
+        Client restClient = ClientBuilder.newClient();
+        List<Course> courses = restClient
+            .target(url)
+            .request(MediaType.APPLICATION_JSON)
+            .get(new GenericType<List<Course>> () {});
+        
+        System.out.println(courses);
+        return courses;
+       
+    }
+     
+     public List<Course> getAssistantCourse(short assistantId) {
+ 
+        String url = "http://localhost:8081/assistants/" + assistantId + "/courses";
+        Client restClient = ClientBuilder.newClient();
+        List<Course> courses = restClient
+            .target(url)
+            .request(MediaType.APPLICATION_JSON)
+            .get(new GenericType<List<Course>> () {});
+        
+        System.out.println(courses);
+        return courses;
+       
+    }
+    
     
     
     

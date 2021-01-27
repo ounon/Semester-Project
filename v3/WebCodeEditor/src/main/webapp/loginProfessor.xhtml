@@ -11,11 +11,11 @@
         <h:form>
             <h:panelGrid columns="2" cellpadding="5">
                 <h:outputLabel for="username" value="Username:" />
-                <p:inputText id="username" value="#{loginStudentBean.username}" required="true" label="username" />
+                <p:inputText id="username" value="#{loginProfessorBean.username}" required="true" label="username" />
                 <h:outputLabel for="password" value="Password:" />
-                <p:password id="password" value="#{loginStudentBean.password}" required="true" label="password" />
+                <p:password id="password" value="#{loginProfessorBean.password}" required="true" label="password" />
                 <br/>
-                <p:commandButton value="Login" id="login_button" action="#{loginStudentBean.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                <p:commandButton value="Login" id="login_button" action="#{loginProfessorBean.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
             </h:panelGrid>
         </h:form>
     </h:body>

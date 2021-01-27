@@ -8,13 +8,11 @@ package com.compiler.webcodeeditor.beans;
 import com.compiler.webcodeeditor.models.Student;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import org.primefaces.PrimeFaces;
+
 
 /**
  *
@@ -22,7 +20,7 @@ import org.primefaces.PrimeFaces;
  */
 @Named
 @RequestScoped
-public class LoginBean {
+public class LoginStudentBean {
 
     private String username;
 

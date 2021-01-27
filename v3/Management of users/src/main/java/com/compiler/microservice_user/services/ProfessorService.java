@@ -88,6 +88,11 @@ public class ProfessorService {
     @GetMapping("/professors/{email}/{password}")
     public Professor check(@PathVariable(value="email") String email, @PathVariable(value="password") String password)
     {
-        return professorRepository.findIfExist(email,password);
+        Professor professor = professorRepository.findByEmail(email);
+        if (professor != null){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
+            encoder.matches(password, professor.getPassword());
+        }
+        return professor;
     }
 }

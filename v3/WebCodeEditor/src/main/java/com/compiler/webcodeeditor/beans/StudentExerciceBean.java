@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 //import javax.enterprise.context.SessionScoped;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -45,6 +47,18 @@ public class StudentExerciceBean implements Serializable {
     private String inputText;
     
     private int questionId;
+    
+    private int courseId;
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+    
+    
 
     public String getOutputText() {
         return OutputText;
@@ -73,10 +87,18 @@ public class StudentExerciceBean implements Serializable {
     
     @PostConstruct
     public void init(){
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+        .getRequest();
+        String id = request.getParameter("questionId");
+        if (id != null)
+        {
+            inputText = getExercice((short)questionId);
+        }
         System.out.println("HEY");
-        System.out.println(questionId);
-        inputText = getExercice((short)questionId);
+        System.out.println(id);
+        
         System.out.println("inputtext " + inputText);
+        OutputText = "";
     }
 
     public MenuModel getQuestionsByCategory(short courseId, short studentId) {
@@ -115,7 +137,9 @@ public class StudentExerciceBean implements Serializable {
     
    public String getExercice(short questionId)
    {
+       OutputText = "";
        QuestionFile qf = new QuestionFile();
+       //String url = "http://localhost:8082/questions/1";
        String url = "http://localhost:8082/questions/" + questionId;
        System.out.println("HELLO");
        System.out.println(url);
@@ -140,7 +164,7 @@ public class StudentExerciceBean implements Serializable {
         
    }
    
-   public void runCode(String code){
+   /*public void runCode(String code){
        if (code != null){
            String clientId = "c0932fbc84b9dc0615e212371d9d9189";
        String clientSecret = "c5c4d751552d71830060306dcc76fab1cdb78b14489cfb80afe8e418e26bb19d";
@@ -161,6 +185,36 @@ public class StudentExerciceBean implements Serializable {
      
         OutputText = obj.getString("output");
        }
+       
+        
+   }*/
+   
+   public void runCode(){
+       
+       System.out.println("inputText " + inputText);
+       
+        //inputText = getExercice((short)questionId);
+
+        String clientId = "c0932fbc84b9dc0615e212371d9d9189";
+        String clientSecret = "c5c4d751552d71830060306dcc76fab1cdb78b14489cfb80afe8e418e26bb19d";
+        String script = getExercice((short)questionId);
+        //String script = "public class HelloWorld{ \\n public static void main(String []args){ \\n int[] numbers = {12, 23, 34, 45, 56, 67, 78, 89, 90}; \\n printElemenets(numbers); } \\n // Write the method here \\n }";
+        String language = "java";
+        int versionIndex = 0;
+        ScriptBody body = new ScriptBody(clientId, clientSecret, inputText, language, versionIndex);
+        String url = "https://api.jdoodle.com/v1/execute";
+        Client restClient = ClientBuilder.newClient();
+        String response = restClient
+             .target(url).request()
+             .post(Entity.json(body), String.class);  
+
+         System.out.println(response);
+         JSONObject obj = new JSONObject(response);
+         System.out.println(obj.getString("output"));
+
+         OutputText = obj.getString("output") != null ? obj.getString("output") :  "null";
+         System.out.println(script);
+        
        
         
    }

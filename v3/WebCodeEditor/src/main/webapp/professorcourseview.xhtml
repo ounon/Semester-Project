@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewParam name="id" value="#{loginProfessorBean.id}" />
+        </f:metadata>
+        #{courseBean.getProfessorCourse(param.id)}
+        <ui:repeat value="#{courseBean.getProfessorCourse(param.id)}" var="course">
+            <p:panel id="boundaries" header="#{course.name}" style="width:300px;height:150px;" styleClass="p-mb-2">
+                Professor: #{loginProfessorBean.username}  <br/>
+             NMn
+             
+            </p:panel>
+            <p:commandButton type="button" value="Submission" />
+            <p:commandButton type="button" value="Edit" />
+            <p:commandButton type="button" value="Delete" />
+            <p:resizable for="boundaries" minWidth="200" maxWidth="400" minHeight="100" maxHeight="200"/>
+        </ui:repeat>
+       
+        <!--<p:panel id="boundaries" header="Boundaries" style="width:300px;height:150px;" styleClass="p-mb-2">
+             Min and Max boundaries <br/>
+             NMn
+             
+        </p:panel>
+        <p:commandButton type="button" value="Submit" />
+        <p:commandButton type="button" value="Edit" />
+        <p:commandButton type="button" value="Delete" />
+        <p:resizable for="boundaries" minWidth="200" maxWidth="400" minHeight="100" maxHeight="200"/>
+        <h:panelGrid columns="2">
+            <p:panel id="panel22" header="New Bill" style="height:200px">
+                 <p:inputText>aaa</p:inputText>
+            </p:panel>
+            <p:panel id="panel222" header="Chart" style="height:200px">
+                 <p:inputText>bbb</p:inputText>
+           </p:panel>
+        </h:panelGrid>-->
+    </h:body>
+</html>

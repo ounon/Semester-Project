@@ -17,9 +17,11 @@ and open the template in the editor.
 
     </h:head>
     <h:body>
-        <f:viewParam name="questionId" value="#{studentExerciceBean.questionId}">
-            <f:convertNumber integerOnly="#{true}" />
-        </f:viewParam>
+        
+         <f:metadata>
+            <f:viewParam name="questionId" value="#{studentExerciceBean.questionId}" />
+            <f:viewParam name="courseId" value="#{studentExerciceBean.courseId}" />
+        </f:metadata>
         <h:form>
             <p:breadCrumb>
                 <p:menuitem value="Categories" url="#" />
@@ -47,21 +49,20 @@ and open the template in the editor.
                
                
                     <h:form>
-                    <ui:param name="script" value="#{studentExerciceBean.outputText}" />
                         <!-- <c:if test="#{not empty param.questionId}">-->
                     <p:commandButton value="Undo" id="undo_button" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
                     <p:commandButton value="Redo" id="redo_button" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
                   
                     <p:commandButton value="Download" id="download_button" action="index.xhtml" style="margin-right:20px;" styleClass="ui-priority-primary" />
                   
-                    <p:commandButton value="Run" id="run_button" action="#{studentExerciceBean.runCode(script)}"   update="output"  style="margin-right:20px;" styleClass="ui-priority-primary" />
+                    <p:commandButton value="Run" id="run_button" action="#{studentExerciceBean.runCode}"   update="output"  style="margin-right:20px;" styleClass="ui-priority-primary" />
                         
          
                     <p:commandButton value="save" id="save" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
                     <p:commandButton value="Reset the question" id="rst_button" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
                     <br/>
                  
-                    <p:inputTextarea rows="30" cols="180" value="#{studentExerciceBean.getExercice(param.questionId)}" rendered="#{not empty param.questionId}"/>
+                    <p:inputTextarea rows="30" cols="180" value="#{studentExerciceBean.inputText}"  rendered="#{not empty param.questionId}"/>
                     
                     <br/>
                     <h:outputText value="Output"  />

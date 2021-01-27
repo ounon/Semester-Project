@@ -17,6 +17,8 @@ import org.springframework.data.repository.query.Param;
  */
 
 public interface ProfessorRepository extends JpaRepository<Professor, Short>{
-    @Query(value = "SELECT * FROM Student s WHERE s.password = :password AND s.email = :email", nativeQuery = true)
+    @Query(value = "SELECT * FROM Professor p WHERE p.password = :password AND p.email = :email", nativeQuery = true)
     Professor findIfExist(@Param("email") String email, @Param("password") String password);
+    @Query(value = "SELECT * FROM professor p WHERE p.email = :email", nativeQuery = true)
+    Professor findByEmail(@Param("email") String email);
 }
