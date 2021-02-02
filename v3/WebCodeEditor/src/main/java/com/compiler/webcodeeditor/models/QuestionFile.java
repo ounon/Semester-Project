@@ -7,10 +7,7 @@ package com.compiler.webcodeeditor.models;
 
 import java.io.Serializable;
 
-/**
- *
- * @author ISO
- */
+
 public class QuestionFile implements Serializable {
     String description;
     String question;

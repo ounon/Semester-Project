@@ -5,10 +5,7 @@
  */
 package com.compiler.webcodeeditor.models;
 
-/**
- *
- * @author ISO
- */
+
 public class ScriptBody {
     String clientId;
     String clientSecret;

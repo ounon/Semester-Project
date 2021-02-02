@@ -47,27 +47,28 @@ and open the template in the editor.
                
                     <h:form>
                         <div class="card">
+                            #{submissionBean.getSubmission(param.courseId)}
                             <p:dataTable var="submission" value="#{submissionBean.getSubmission(param.courseId)}">
-                            <p:column headerText="First Name">
-                                <h:outputText value="#{submission.student.firstName}" />
-                            </p:column>
+                                <p:column headerText="First Name">
+                                    <h:outputText value="#{submission.student.firstName}" />
+                                </p:column>
 
-                            <p:column headerText="Last Name">
-                                <h:outputText value="#{submission.student.lastName}" />
-                            </p:column>
+                                <p:column headerText="Last Name">
+                                    <h:outputText value="#{submission.student.lastName}" />
+                                </p:column>
 
-                            <p:column headerText="ID">
-                                <h:outputText value="#{submission.student.studentId}" />
-                            </p:column>
+                                <p:column headerText="ID">
+                                    <h:outputText value="#{submission.student.studentId}" />
+                                </p:column>
 
-                            <p:column headerText="Score">
-                                <h:outputText value="#{submission.student.firstName}" />
-                            </p:column>
-                            
-                            <p:column headerText="View">
-                                <h:outputText value="#{submission.student.firstName}" />
-                            </p:column>
-                        </p:dataTable>
+                                <p:column headerText="Score">
+                                    <h:outputText value="#{submission.student.firstName}" />
+                                </p:column>
+
+                                <p:column headerText="View">
+                                    <h:outputText value="#{submission.student.firstName}" />
+                                </p:column>
+                            </p:dataTable>
                     </div>
                     </h:form>
                 

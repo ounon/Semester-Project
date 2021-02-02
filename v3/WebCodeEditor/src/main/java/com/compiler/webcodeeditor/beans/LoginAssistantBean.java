@@ -15,10 +15,6 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
 
-/**
- *
- * @author ISO
- */
 @Named
 @RequestScoped
 public class LoginAssistantBean {
@@ -55,7 +51,10 @@ public class LoginAssistantBean {
         this.password = password;
     }
 
+    // Function that is called up when a user logs on.
     public String login() {
+        
+        // Call microservice to get an assistant based on email and password
         String url = "http://localhost:8081/assistants/" + username + "/" + password;
         Client restClient = ClientBuilder.newClient();
         Assistant assistant = restClient
@@ -65,7 +64,6 @@ public class LoginAssistantBean {
         if (assistant != null){
             id = assistant.getAssistantId();
             System.out.println(id);
-            //return "/AdminPages/AdminMainPage.xhtml?faces-redirect=true&includeViewParams=true";
             return "/studentcourseview.xhtml?faces-redirect=true&includeViewParams=true";
         }
         return "";

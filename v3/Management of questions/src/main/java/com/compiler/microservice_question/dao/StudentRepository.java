@@ -9,10 +9,7 @@ import com.compiler.microservice_question.entities.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-/**
- *
- * @author User
- */
+
 public interface StudentRepository extends JpaRepository<Student, Short> {
     
 }

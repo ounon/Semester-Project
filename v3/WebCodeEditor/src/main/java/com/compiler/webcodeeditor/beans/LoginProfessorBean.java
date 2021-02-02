@@ -14,10 +14,6 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
 
-/**
- *
- * @author ISO
- */
 @Named
 @RequestScoped
 public class LoginProfessorBean {
@@ -54,6 +50,7 @@ public class LoginProfessorBean {
         this.password = password;
     }
 
+    // Function that is called up when a professor logs on.
     public String login() {
         String url = "http://localhost:8081/professors/" + username + "/" + password;
         Client restClient = ClientBuilder.newClient();

@@ -6,7 +6,7 @@
 package com.compiler.webcodeeditor.models;
 
 import java.io.Serializable;
-import java.util.List;
+
 
 
 /**
@@ -26,7 +26,7 @@ public class Course implements Serializable {
    
     //private List<Assistant> assistantList;
    
-    //private List<Student> studentList;
+    //private List<Student> studentLiss
 
     public Course() {
     }

@@ -18,6 +18,7 @@ and open the template in the editor.
     </h:head>
     <h:body>
         
+        <!-- Parameter in URL-->
          <f:metadata>
             <f:viewParam name="questionId" value="#{studentExerciceBean.questionId}" />
             <f:viewParam name="courseId" value="#{studentExerciceBean.courseId}" />
@@ -62,9 +63,11 @@ and open the template in the editor.
                     <p:commandButton value="Reset the question" id="rst_button" action="#{loginView.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
                     <br/>
                  
+                    <!-- Zone area for typing respomse of exercice-->
                     <p:inputTextarea rows="30" cols="180" value="#{studentExerciceBean.inputText}"  rendered="#{not empty param.questionId}"/>
                     
                     <br/>
+                    <!-- Result of execution script-->
                     <h:outputText value="Output"  />
                     <br/>
                     <h:outputText id="output" value="#{studentExerciceBean.outputText}" style="border-style: solid; size: 500px" />

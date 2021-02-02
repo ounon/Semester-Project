@@ -20,7 +20,6 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-//import javax.enterprise.context.SessionScoped;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -32,10 +31,7 @@ import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 
-/**
- *
- * @author ISO
- */
+
 @Named
 @SessionScoped
 public class StudentExerciceBean implements Serializable {
@@ -94,13 +90,16 @@ public class StudentExerciceBean implements Serializable {
         {
             inputText = getExercice((short)questionId);
         }
-        System.out.println("HEY");
+        //System.out.println("HEY");
         System.out.println(id);
         
         System.out.println("inputtext " + inputText);
         OutputText = "";
     }
 
+    
+    // Function to create a left Menu. This menu displays the questions by categories 
+    // The view menu is for a student and a given course. 
     public MenuModel getQuestionsByCategory(short courseId, short studentId) {
         MenuModel model = new DefaultMenuModel();
         String url = "http://localhost:8082/courses/" + courseId + "/questions";
@@ -135,11 +134,12 @@ public class StudentExerciceBean implements Serializable {
 
    
     
+   // Function to retrieve an exercise: The retrieved exercise will be displayed in the student exercise view page.
    public String getExercice(short questionId)
    {
        OutputText = "";
        QuestionFile qf = new QuestionFile();
-       //String url = "http://localhost:8082/questions/1";
+       //Getting an exercice for a question given
        String url = "http://localhost:8082/questions/" + questionId;
        System.out.println("HELLO");
        System.out.println(url);
@@ -148,6 +148,8 @@ public class StudentExerciceBean implements Serializable {
             .target(url)
             .request(MediaType.APPLICATION_JSON)
             .get(new GenericType<Question> () {});
+        
+        // Get url of question in the response of the requeste above
         String url2 = question.getQuestionFilePath();
         System.out.println(url2);
         Client restClient2 = ClientBuilder.newClient();
@@ -163,45 +165,25 @@ public class StudentExerciceBean implements Serializable {
         return obj.getString("question");
         
    }
-   
-   /*public void runCode(String code){
-       if (code != null){
-           String clientId = "c0932fbc84b9dc0615e212371d9d9189";
-       String clientSecret = "c5c4d751552d71830060306dcc76fab1cdb78b14489cfb80afe8e418e26bb19d";
-       String script = code;
-       //String script = "public class HelloWorld{ \\n public static void main(String []args){ \\n int[] numbers = {12, 23, 34, 45, 56, 67, 78, 89, 90}; \\n printElemenets(numbers); } \\n // Write the method here \\n }";
-       String language = "java";
-       int versionIndex = 0;
-       ScriptBody body = new ScriptBody(clientId, clientSecret, script, language, versionIndex);
-       String url = "https://api.jdoodle.com/v1/execute";
-       Client restClient = ClientBuilder.newClient();
-       String response = restClient
-            .target(url).request()
-            .post(Entity.json(body), String.class);  
-                
-        System.out.println(response);
-        JSONObject obj = new JSONObject(response);
-        System.out.println(obj.getString("output"));
-     
-        OutputText = obj.getString("output");
-       }
-       
-        
-   }*/
-   
+
+   // Function to call jdoodle api api and get result
    public void runCode(){
        
        System.out.println("inputText " + inputText);
        
         //inputText = getExercice((short)questionId);
-
+        // acces for connecting to jdoodle
         String clientId = "c0932fbc84b9dc0615e212371d9d9189";
         String clientSecret = "c5c4d751552d71830060306dcc76fab1cdb78b14489cfb80afe8e418e26bb19d";
         String script = getExercice((short)questionId);
         //String script = "public class HelloWorld{ \\n public static void main(String []args){ \\n int[] numbers = {12, 23, 34, 45, 56, 67, 78, 89, 90}; \\n printElemenets(numbers); } \\n // Write the method here \\n }";
         String language = "java";
         int versionIndex = 0;
+        
+        // Serializing the body of jdoodle api
         ScriptBody body = new ScriptBody(clientId, clientSecret, inputText, language, versionIndex);
+        
+        // Execute jdoodle api
         String url = "https://api.jdoodle.com/v1/execute";
         Client restClient = ClientBuilder.newClient();
         String response = restClient

@@ -38,6 +38,8 @@ public class SubmissionService {
     @Autowired
     private QuestionRepository questionRepository;
     
+    
+    // Function to get all submission for one course based on course id 
     @GetMapping("/submissions/courses/{course_id}")
     public List<Submission> submit(@PathVariable(value="course_id") short course_id){
         Course course = courseRepository.getOne(course_id); 

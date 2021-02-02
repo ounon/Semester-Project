@@ -22,10 +22,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-/**
- *
- * @author User
- */
+
 @RestController
 public class ProfessorService {
     
@@ -35,12 +32,15 @@ public class ProfessorService {
     @Autowired
     private CourseRepository courseRepository;
     
+    // Function to register a professor
     @PostMapping(value="/professors")
     public Professor register(@RequestBody Professor s){
         Professor tmpProfessor = new Professor(s.getFirstName(),s.getLastName(), s.getEmail(), new BCryptPasswordEncoder().encode(s.getPassword()));
         return professorRepository.save(tmpProfessor);
     }
     
+    // Function to assign a course to the professor. It takes as parameters the professor id and the course id 
+    // of the course to be assigned to the professor. It also allows you to assign a professor to a given course.
     @PostMapping("/professors/{professor_id}/courses/{course_id}")
     public Professor addCourse(@PathVariable(value="professor_id") short professor_id, @PathVariable(value="course_id") short course_id){
         Professor professor = professorRepository.getOne(professor_id);
@@ -53,38 +53,45 @@ public class ProfessorService {
         return professorRepository.save(professor);
     }
     
+    // Function to update information relating to a professor
     @PutMapping("/professors/{professor_id}")
     public Professor update(@PathVariable(value="professor_id") short professor_id,@RequestBody Professor professor){
         professor.setProfessorId(professor_id);
         return professorRepository.save(professor);
     }
     
+    // Function to get the list of all professors
     @GetMapping("/professors")
     public List<Professor> getAll() {
       return professorRepository.findAll();
     }
     
+    // Function to get courses for a given professor. The professor's id is passed in parameter
     @GetMapping("/professors/{professor_id}")
     public Optional<Professor> get(@PathVariable(value="professor_id") short professor_id) {
       return professorRepository.findById(professor_id);
     }
     
+    // Function to get courses for a given professor. The professor's id is passed in parameter
     @GetMapping("/professors/{professor_id}/courses")
-    public List<Course> getCourses(@PathVariable(value="professor_id") short student_id) {
-        Professor professor = professorRepository.getOne(student_id);
+    public List<Course> getCourses(@PathVariable(value="professor_id") short professor_id) {
+        Professor professor = professorRepository.getOne(professor_id);
         return professor.getCourseList();
     }
     
+    // Function to delete one professor. The professor's id is passed in parameter
     @DeleteMapping("/professors/{professor_id}")
     public void delete(@PathVariable(value="professor_id") short professor_id) {
       professorRepository.deleteById(professor_id);
     }
     
+    // Function to delete all professors
     @DeleteMapping("/professors")
     public void deleteAll() {
       professorRepository.deleteAll();
     }
     
+    // function to check password of the professor if professor
     @GetMapping("/professors/{email}/{password}")
     public Professor check(@PathVariable(value="email") String email, @PathVariable(value="password") String password)
     {

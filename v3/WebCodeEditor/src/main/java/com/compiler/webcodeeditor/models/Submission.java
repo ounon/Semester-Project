@@ -5,10 +5,11 @@
  */
 package com.compiler.webcodeeditor.models;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import java.io.Serializable;
+
+
 import javax.json.bind.annotation.JsonbProperty;
+
+
 
 /**
  *
@@ -19,35 +20,21 @@ public class Submission{
    
 
     private Question question;
+    
+
     private Student student;
 
-    /*private Integer score = 0;
-   
-    private String studentSolutionPath = "";*/
+    @JsonbProperty(nillable=true) 
+    private int score = 0;
+    @JsonbProperty(nillable=true) 
+    private String studentSolutionPath = "";
 
-
-    public Submission(Student student, Question question) {
-        this.student = student;
-        this.question = question;
+    public Submission() {
+    
     }
-  
-    /*public Submission(Student student, Question question, Integer score, String studentSolutionPath) {
-        this.student = student;
-        this.question = question;
-        if (score == null){
-             this.score = 0;
-        }
-        else{
-            this.score = score;
-        }
-        if (studentSolutionPath == null){
-            this.studentSolutionPath = "";
-        }
-        else{
-            this.studentSolutionPath = studentSolutionPath;
-        }
-        
-    }*/
+
+   
+   
 
     public Question getQuestion() {
         return question;
@@ -65,7 +52,7 @@ public class Submission{
         this.student = student;
     }
 
-    /* public int getScore() {
+    public int getScore() {
         return score;
     }
 
@@ -79,6 +66,6 @@ public class Submission{
 
     public void setStudentSolutionPath(String studentSolutionPath) {
         this.studentSolutionPath = studentSolutionPath;
-    }*/
+    }
    
 }

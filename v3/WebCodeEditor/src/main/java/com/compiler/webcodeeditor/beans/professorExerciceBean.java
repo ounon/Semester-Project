@@ -50,9 +50,11 @@ public class professorExerciceBean implements Serializable {
     }
     
     
-    
+    // Function to create left menu in the view professorsubmissionview
     public MenuModel getQuestionsByCategory(short courseId) {
         MenuModel model = new DefaultMenuModel();
+        
+        // Getting all question for a given course
         String url = "http://localhost:8082/courses/" + courseId + "/questions";
         Client restClient = ClientBuilder.newClient();
         List<Question> questions = restClient

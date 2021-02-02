@@ -1,22 +1,20 @@
 package com.compiler.webcodeeditor.models;
 
 
-import java.io.Serializable;
-import java.util.List;
 
-public class Assistant implements Serializable{
+
+public class Assistant{
  
-    //@JsonProperty ("assistantId")
     private Short assistantId;
-    //@JsonProperty ("firstName")
+ 
     private String firstName;
-    //@JsonProperty ("lastName")
+
     private String lastName;
-    //@JsonProperty ("email")
+
     private String email;
-    //@JsonProperty ("password")
+  
     private String password;
-    //private List<Course> courseList;
+
     
     public Assistant(){
         super();

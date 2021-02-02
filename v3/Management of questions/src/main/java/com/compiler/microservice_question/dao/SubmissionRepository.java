@@ -9,10 +9,7 @@ import com.compiler.microservice_question.entities.Submission;
 import com.compiler.microservice_question.entities.SubmissionPK;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- *
- * @author ISO
- */
+
 
 public interface SubmissionRepository extends JpaRepository<Submission, SubmissionPK>{
     

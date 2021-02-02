@@ -32,7 +32,8 @@ public class StudentService {
     
     @Autowired
     private SubmissionRepository submissionRepository;
-            
+    
+    // Function to submit one question based on question_id for a given student
     @PostMapping("/students/{student_id}/questions/{question_id}")
     public Student submit(@PathVariable(value="student_id") short student_id, @PathVariable(value="question_id") short question_id){
         Student student = studentRepository.getOne(student_id);

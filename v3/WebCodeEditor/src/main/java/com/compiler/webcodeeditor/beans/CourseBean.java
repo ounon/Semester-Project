@@ -6,8 +6,7 @@
 package com.compiler.webcodeeditor.beans;
 
 import com.compiler.webcodeeditor.models.Course;
-import com.compiler.webcodeeditor.services.CourseService;
-import com.compiler.webcodeeditor.services.UserService;
+
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -20,31 +19,15 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
-/**
- *
- * @author ISO
- */
+
 @Named
 @SessionScoped
 public class CourseBean implements Serializable {
 
-   
-    //private CourseService service;
-    
-    //private List<Course> courses;
-    
-    /*@PostConstruct
-    public void init() {
-        System.out.println("aaa");
-        courses = service.getStudentCourse((short)1);
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }*/
-    
+    // This function allows you to get the students for a given course based on its Id
     public List<Course> getStudentCourse(short studentId) {
  
+        // Call microservice users (getting student's course)
         String url = "http://localhost:8081/students/" + studentId + "/courses";
         Client restClient = ClientBuilder.newClient();
         List<Course> courses = restClient
@@ -57,8 +40,10 @@ public class CourseBean implements Serializable {
        
     }
     
-     public List<Course> getProfessorCourse(short professorId) {
+    // This function allows you to get the students for a given course based on its Id
+    public List<Course> getProfessorCourse(short professorId) {
  
+        // Call microservice users (getting professeror's course)
         String url = "http://localhost:8081/professors/" + professorId + "/courses";
         Client restClient = ClientBuilder.newClient();
         List<Course> courses = restClient
@@ -71,8 +56,10 @@ public class CourseBean implements Serializable {
        
     }
      
-     public List<Course> getAssistantCourse(short assistantId) {
+    // This function allows you to get the assistant for a given course based on its Id
+    public List<Course> getAssistantCourse(short assistantId) {
  
+        // Call microservice users (getting assistants's course)
         String url = "http://localhost:8081/assistants/" + assistantId + "/courses";
         Client restClient = ClientBuilder.newClient();
         List<Course> courses = restClient

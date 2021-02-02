@@ -14,10 +14,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
 
-/**
- *
- * @author ISO
- */
+
 @Named
 @RequestScoped
 public class LoginStudentBean {
@@ -54,6 +51,7 @@ public class LoginStudentBean {
         this.password = password;
     }
 
+    // Function that is called up when a students logs on.
     public String login() {
         String url = "http://localhost:8081/students/" + username + "/" + password;
         Client restClient = ClientBuilder.newClient();
@@ -64,7 +62,6 @@ public class LoginStudentBean {
         if (student != null){
             id = student.getStudentId();
             System.out.println(id);
-            //return "/AdminPages/AdminMainPage.xhtml?faces-redirect=true&includeViewParams=true";
             return "/studentcourseview.xhtml?faces-redirect=true&includeViewParams=true";
         }
         return "";

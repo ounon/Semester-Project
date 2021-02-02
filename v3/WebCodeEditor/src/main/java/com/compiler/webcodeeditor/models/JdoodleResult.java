@@ -7,10 +7,7 @@ package com.compiler.webcodeeditor.models;
 
 import java.io.Serializable;
 
-/**
- *
- * @author ISO
- */
+
 public class JdoodleResult implements Serializable{
     String output;
     int statusCode;

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.compiler.microservice_user.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,12 +15,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author User
- */
+
 @Entity
 @Table(name = "student")
 @XmlRootElement
@@ -64,7 +56,7 @@ public class Student implements Serializable {
 
     public Student(Short studentId) {
         this.studentId = studentId;
-    }
+    } 
 
     public Student(Short studentId, String firstName, String lastName, String email, String password) {
         this.studentId = studentId;

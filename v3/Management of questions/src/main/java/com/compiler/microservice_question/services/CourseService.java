@@ -17,13 +17,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-/**
- *
- * @author User
- */
+
 @RestController
 public class CourseService {
     @Autowired
@@ -37,27 +33,31 @@ public class CourseService {
         return courseRepository.save(new Course(c.getName(),c.getDescription()));
     }
     
+    // Function to get all courses
     @GetMapping("/courses")
     public List<Course> getAll() {
       return courseRepository.findAll();
     }
     
+    // Function to get course based on id
     @GetMapping("/courses/{course_id}")
     public Optional<Course> get(@PathVariable(value="course_id") short course_id) {
       return courseRepository.findById(course_id);
     }
     
+    // Function to delete course based on id
     @DeleteMapping("/courses/{course_id}")
     public void delete(@PathVariable(value="course_id") short course_id) {
       courseRepository.deleteById(course_id);
     }
     
+    // Function to delete all courses 
     @DeleteMapping("/courses")
     public void deleteAll() {
       courseRepository.deleteAll();
     }
     
-
+    // Function to assign question to a course. The id of course and id of question are passed in parameters
     @PostMapping("/courses/{course_id}/questions/{question_id}")
     public Course addQuestion(@PathVariable(value="course_id") short course_id, @PathVariable(value="question_id") short question_id){
         Question question = questionRepository.getOne(question_id);
@@ -70,7 +70,8 @@ public class CourseService {
         return courseRepository.save(course);
     }
     
-     @GetMapping("/courses/{course_id}/questions")
+    // Function to get all question for a given course
+    @GetMapping("/courses/{course_id}/questions")
     public List<Question> getQuestions(@PathVariable(value="course_id") short course_id){
         Course course = courseRepository.getOne(course_id); 
         return course.getQuestionList();

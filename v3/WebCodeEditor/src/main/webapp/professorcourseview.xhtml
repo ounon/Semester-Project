@@ -5,6 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
+<!-- View to show professor's course -->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -22,8 +23,7 @@ and open the template in the editor.
         <ui:repeat value="#{courseBean.getProfessorCourse(param.id)}" var="course">
             <p:panel id="boundaries" header="#{course.name}" style="width:300px;height:150px;" styleClass="p-mb-2">
                 Professor: #{loginProfessorBean.username}  <br/>
-             NMn
-             
+           
             </p:panel>
             <p:commandButton type="button" value="Submission" />
             <p:commandButton type="button" value="Edit" />
@@ -31,22 +31,6 @@ and open the template in the editor.
             <p:resizable for="boundaries" minWidth="200" maxWidth="400" minHeight="100" maxHeight="200"/>
         </ui:repeat>
        
-        <!--<p:panel id="boundaries" header="Boundaries" style="width:300px;height:150px;" styleClass="p-mb-2">
-             Min and Max boundaries <br/>
-             NMn
-             
-        </p:panel>
-        <p:commandButton type="button" value="Submit" />
-        <p:commandButton type="button" value="Edit" />
-        <p:commandButton type="button" value="Delete" />
-        <p:resizable for="boundaries" minWidth="200" maxWidth="400" minHeight="100" maxHeight="200"/>
-        <h:panelGrid columns="2">
-            <p:panel id="panel22" header="New Bill" style="height:200px">
-                 <p:inputText>aaa</p:inputText>
-            </p:panel>
-            <p:panel id="panel222" header="Chart" style="height:200px">
-                 <p:inputText>bbb</p:inputText>
-           </p:panel>
-        </h:panelGrid>-->
+      
     </h:body>
 </html>
